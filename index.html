@@ -17,7 +17,7 @@
 
         body {
             font-family: Arial, sans-serif;
-            background-color: black;
+            background-color:#1a202c;
             margin: 0;
             padding: 20px;
             display: flex;
@@ -166,7 +166,7 @@
             justify-content: flex-end;
             align-items: center;
     width: 50px;
-    background-color: yellow; /* Bright blue for visibility */
+    background-color: #ffcc00; /* Bright blue for visibility */
     color: white; /* White text */
     padding: 10px;
     border: none;
@@ -190,48 +190,65 @@
         }
 
         .shop-name {
-            font-family: 'Arial', sans-serif;
-            /* Choose a playful font */
-            width: 500px;
-            font-size: 37px;
-            /* Large size for emphasis */
-            text-align: center;
-            /* Center the text */
-            color: #ffcc00;
-            /* Bright yellow for a sunny feel */
-            text-shadow: 2px 2px 0 #fff, 4px 4px 0 #ff6600;
-            /* Layered shadows for depth */
-            background: linear-gradient(to right, #ff9966, #ff5e62);
-            /* Colorful gradient background */
-            padding: 20px;
-            /* Space around the text */
-            border-radius: 10px;
-            /* Rounded corners */
-            margin: 20px ;
-            /* Center margin */
-            display: inline-block;
-            /* Fit text snugly */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            /* Soft shadow for depth */
+    font-family: 'Courier New', Courier, monospace; /* Playful font */
+    font-size: 48px; /* Large size for emphasis */
+    text-align: center; /* Center alignment */
+    color: #ffcc00; /* Bright yellow text */
+    text-shadow: 
+        3px 3px 0 rgba(0, 0, 0, 0.3), /* Darker grey shadow for depth */
+        5px 5px 0 rgba(0, 0, 0, 0.2); /* Lighter grey shadow for a subtle glow */
+    background: linear-gradient(to right, #ffcc00, #f0e68c); /* Gradient from yellow to a lighter shade */
+    padding: 30px; /* Spacing around the text */
+    border-radius: 20px; /* Rounded corners */
+    margin: 30px; /* Space around the element */
+    display: inline-block; /* Fit text snugly */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); /* Stronger shadow for lift */
+    border: 3px solid rgba(0, 0, 0, 0.3); /* Slightly darker grey border */
+    transition: transform 0.3s ease; /* Smooth hover effect */
+}
 
-        }
+.shop-name:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
 
-        .item {
-            background: yellow;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin: 15px 0;
-            padding: 15px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
-        }
+.item {
+    background: rgba(255, 204, 0, 0.8); /* Slightly transparent yellow background */
+    border: 2px solid rgba(0, 0, 0, 0.2); /* Light grey border */
+    border-radius: 10px; /* Rounded corners */
+    margin: 20px 0; /* Space between items */
+    padding: 15px; /* Internal spacing */
+    text-align: center; /* Center text */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+}
 
-        .item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
-            border: 2px solid #28a745;
-            /* Change border color on hover */
-        }
+.item:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Stronger shadow on hover */
+    border-color: rgba(0, 0, 0, 0.4); /* Darker border on hover */
+}
+
+
+
+h2 {
+    color: #e67e22; /* Warm orange color for item names */
+    font-size: 1.5em; /* Slightly larger font size */
+    margin: 10px 0; /* Space above and below */
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.2); /* Soft shadow for text */
+}
+
+.price {
+    font-weight: bold; /* Bold text for emphasis */
+    color: #d35400; /* Darker orange for price */
+    font-size: 1.2em; /* Slightly larger font for visibility */
+}
+
+.details {
+    color: rgba(0, 0, 0, 0.7); /* Softer grey for details */
+    font-size: 0.9em; /* Smaller font size for details */
+    margin-top: 5px; /* Space above details */
+}
+
 
         .item img {
             width: 288px;
@@ -293,6 +310,52 @@
             filter: blur(5px);
             transition: filter 0.3s ease;
         }
+        .add-item-container {
+    width: 400px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, rgba(255, 204, 0, 0.8), rgba(255, 204, 0, 0.6)); /* Gradient background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Soft shadow */
+    padding: 20px;
+    position: fixed; /* Fixed position */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Centering */
+    z-index: 100; /* Ensure it's on top of other elements */
+    backdrop-filter: blur(10px); /* Blur effect behind the container */
+}
+
+/* Style for the form elements */
+.add-item-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-item-form input,
+.add-item-form select,
+.add-item-form textarea {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd; /* Light grey border */
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Button styles */
+.add-item-form button {
+    padding: 10px;
+    background-color: #ffcc00; /* Bright yellow */
+    color: black; /* Black text for visibility */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-item-form button:hover {
+    background-color: #e0b800; /* Darker shade on hover */
+}
+
     </style>
 </head>
 
