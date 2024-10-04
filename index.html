@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Menu</title>
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        i {
+            color: #e67e22;
+            font-size: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+
+        }
+
+        .add-item-container {
+            margin-bottom: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .add-item-form {
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        .add-item-form input,
+        .add-item-form select {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .add-item-form button {
+            padding: 10px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .add-item-form button:hover {
+            background-color: #4cae4c;
+        }
+
+        #menu {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+
+        .price {
+            font-size: 1.2em;
+            color: #28a745;
+        }
+
+        .details {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        #error {
+            color: red;
+            margin-bottom: 10px;
+        }
+
+
+        .add-item-container {
+            width: 400px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            position: fixed;
+            /* Fixed position */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+            /* Ensures it's on top of other elements */
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.9);
+            /* Slightly more transparent */
+        }
+
+        .add-item-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .add-item-nav h2 {
+            font-size: 24px;
+        }
+
+        .close-button {
+    background: none; /* No background */
+    color: #ffffff; /* White text color */
+    border: none; /* No border */
+    font-size: 24px;
+    cursor: pointer;
+        }
+
+        .add-item-form {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .nav-menu p {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+    width: 50px;
+    background-color: yellow; /* Bright blue for visibility */
+    color: white; /* White text */
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.nav-menu p :hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+        .menu {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: red;
+        }
+
+        .shop-name {
+            font-family: 'Arial', sans-serif;
+            /* Choose a playful font */
+            width: 500px;
+            font-size: 37px;
+            /* Large size for emphasis */
+            text-align: center;
+            /* Center the text */
+            color: #ffcc00;
+            /* Bright yellow for a sunny feel */
+            text-shadow: 2px 2px 0 #fff, 4px 4px 0 #ff6600;
+            /* Layered shadows for depth */
+            background: linear-gradient(to right, #ff9966, #ff5e62);
+            /* Colorful gradient background */
+            padding: 20px;
+            /* Space around the text */
+            border-radius: 10px;
+            /* Rounded corners */
+            margin: 20px ;
+            /* Center margin */
+            display: inline-block;
+            /* Fit text snugly */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            /* Soft shadow for depth */
+
+        }
+
+        .item {
+            background: yellow;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 15px 0;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+        }
+
+        .item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+            border: 2px solid #28a745;
+            /* Change border color on hover */
+        }
+
+        .item img {
+            width: 288px;
+            /* Set to your desired width */
+            height: 200px;
+            /* Set to your desired height */
+            object-fit: cover;
+            /* Ensures the image maintains aspect ratio */
+        }
+
+
+        h2 {
+            color: #555;
+            margin: 10px 0;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #e67e22;
+        }
+
+        .details {
+            color: #777;
+            font-size: 0.9em;
+        }
+
+        .row-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            /* Increase this value to increase the gap */
+            margin-bottom: 30px;
+        }
+
+
+        .hidden {
+            display: none;
+        }
+
+        .nav-menu {
+            width: 100%;
+            height: 50px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .nav-menu p {
+            font-size: 50px;
+            cursor: pointer;
+        }
+
+        #error p {
+            color: red;
+            font-size: 14px;
+        }
+
+        /* Blur background when form is active */
+        .blurred {
+            filter: blur(5px);
+            transition: filter 0.3s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="shop-name">
+        <h1>The Cozy Nook
+        </h1>
+
+    </div>
+    <div class="menu" id="main">
+        <div class="nav-menu">
+            <p onclick="add()">+</p>
+        </div>
+        <div class="sandwich">
+            <h1><i>Sandwich Menu</i></h1>
+            <div class="row-items" id="sandwich-items">
+
+            </div>
+        </div>
+
+        <div class="drinks">
+            <h1><i>Drinks Menu</i></h1>
+            <div class="row-items" id="drink-items">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="add-item-container hidden">
+        <nav class="add-item-nav">
+            <h2>Add Item</h2>
+            <button class="close-button" onclick="remove()">X</button>
+        </nav>
+
+        <form class="add-item-form" id="add-item-form">
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select id="category" name="category">
+                    <option value="Select Category">Select Category</option>
+                    <option value="sandwiches">Sandwiches</option>
+                    <option value="drinks">Drinks</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="image">Add Image</label>
+                <input type="file" id="image" name="image" accept="image/*" required>
+            </div>
+
+            <div class="form-group">
+                <label for="name">Item Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="price">Item Price</label>
+                <input type="number" id="price" name="price" required>
+            </div>
+
+            <div class="form-group">
+                <label for="details">Item Details</label>
+                <textarea id="details" name="details" rows="4" required></textarea>
+            </div>
+            <div id="error"></div>
+            <button type="submit" class="submit-button">Add Item</button>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
